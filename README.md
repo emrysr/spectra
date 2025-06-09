@@ -1,2 +1,2 @@
 # spectra
-js frontend for spectra device
+project files
