@@ -6,3 +6,6 @@ defineProps<{ name: string }>()
         <slot></slot>
     </section>
 </template>
+<style lang="css">
+.stack {}
+</style>
