@@ -17,8 +17,8 @@
     "lint:eslint": "eslint . --fix",
     "lint": "run-s lint:*",
     "format": "prettier --write src/",
-    "build-bulma": "sass --load-path=node_modules spectra-theme.scss public/css/spectra.css",
-    "watch": "npm run build-bulma -- --watch"
+    "build:css": "sass --load-path=node_modules spectra-theme.scss public/css/spectra.css",
+    "watch:css": "npm run build-bulma -- --watch"
   },
   "dependencies": {
     "bulma": "^1.0.4",

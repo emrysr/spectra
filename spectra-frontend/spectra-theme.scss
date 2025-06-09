@@ -7,7 +7,8 @@ $beige-lighter: #eff0eb;
 
 // Path to Bulma's sass folder
 @use "bulma/sass" with (
-  $family-primary: '"Nunito", sans-serif',
+  $family-primary: '"Press Start 2P", system-ui',
+  $button-family: '"Press Start 2P", system-ui',
   $grey-dark: $brown,
   $grey-light: $beige-light,
   $primary: $purple,
@@ -17,4 +18,4 @@ $beige-lighter: #eff0eb;
 );
 
 // Import the Google Font
-@import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');

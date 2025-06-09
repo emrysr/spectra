@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /* Bulma Utilities */
-@import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 :root {
   --bulma-control-radius: var(--bulma-radius);
   --bulma-control-radius-small: var(--bulma-radius-small);
@@ -47,7 +47,7 @@
   --bulma-scheme-invert-ter-l: 14%;
   --bulma-scheme-invert-bis-l: 7%;
   --bulma-scheme-invert-l: 4%;
-  --bulma-family-primary: "Nunito", sans-serif;
+  --bulma-family-primary: "Press Start 2P", system-ui;
   --bulma-family-secondary: Inter, SF Pro, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, Helvetica, Arial, sans-serif;
   --bulma-family-code: Inconsolata, Hack, SF Mono, Roboto Mono, Source Code Pro, Ubuntu Mono, monospace;
   --bulma-size-small: 0.75rem;
@@ -948,7 +948,7 @@
     --bulma-scheme-invert-ter-l: 14%;
     --bulma-scheme-invert-bis-l: 7%;
     --bulma-scheme-invert-l: 4%;
-    --bulma-family-primary: "Nunito", sans-serif;
+    --bulma-family-primary: "Press Start 2P", system-ui;
     --bulma-family-secondary: Inter, SF Pro, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, Helvetica, Arial, sans-serif;
     --bulma-family-code: Inconsolata, Hack, SF Mono, Roboto Mono, Source Code Pro, Ubuntu Mono, monospace;
     --bulma-size-small: 0.75rem;
@@ -1866,7 +1866,7 @@
   --bulma-scheme-invert-ter-l: 14%;
   --bulma-scheme-invert-bis-l: 7%;
   --bulma-scheme-invert-l: 4%;
-  --bulma-family-primary: "Nunito", sans-serif;
+  --bulma-family-primary: "Press Start 2P", system-ui;
   --bulma-family-secondary: Inter, SF Pro, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, Helvetica, Arial, sans-serif;
   --bulma-family-code: Inconsolata, Hack, SF Mono, Roboto Mono, Source Code Pro, Ubuntu Mono, monospace;
   --bulma-size-small: 0.75rem;
@@ -3326,7 +3326,7 @@ a.box:active {
 }
 
 .button {
-  --bulma-button-family: false;
+  --bulma-button-family: "Press Start 2P", system-ui;
   --bulma-button-weight: var(--bulma-weight-medium);
   --bulma-button-border-color: var(--bulma-border);
   --bulma-button-border-style: solid;
@@ -3392,6 +3392,7 @@ a.box:active {
   padding-top: calc(var(--bulma-button-padding-vertical) - var(--bulma-button-border-width));
   text-align: center;
   white-space: nowrap;
+  font-family: var(--bulma-button-family);
 }
 .button strong {
   color: inherit;
@@ -21046,7 +21047,7 @@ has-background-danger.is-hoverable:active {
 }
 
 .is-family-primary {
-  font-family: '"Nunito", sans-serif' !important;
+  font-family: '"Press Start 2P", system-ui' !important;
 }
 
 .is-family-secondary {
