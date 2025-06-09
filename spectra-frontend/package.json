@@ -16,9 +16,12 @@
     "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore",
     "lint:eslint": "eslint . --fix",
     "lint": "run-s lint:*",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "build-bulma": "sass --load-path=node_modules spectra-theme.scss public/css/spectra.css",
+    "watch": "npm run build-bulma -- --watch"
   },
   "dependencies": {
+    "bulma": "^1.0.4",
     "pinia": "^3.0.1",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
@@ -49,6 +52,7 @@
     "vite": "^6.2.4",
     "vite-plugin-vue-devtools": "^7.7.2",
     "vitest": "^3.1.1",
-    "vue-tsc": "^2.2.8"
+    "vue-tsc": "^2.2.8",
+    "sass": "^1.72.0"
   }
 }
