@@ -15,7 +15,7 @@ const message = false;
       </nav>
     </div>
   </header>
-
+  <RouterView></RouterView>
   <TheDevice>
   </TheDevice>
 </template>

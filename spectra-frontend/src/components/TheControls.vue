@@ -1,35 +1,35 @@
+<script setup lang="ts">
+import { storeToRefs } from 'pinia';
+import SettingsLink from './SettingsLink.vue';
+import { useSettingsMenuStore } from '@/stores/settings';
+import SettingsView from './SettingsView.vue';
+const { selected, currentView } = storeToRefs(useSettingsMenuStore());
+</script>
 <template>
 
     <section class="section" id="center-panel">
         <div id="center-panel__left">
-            <div class="dpad"><button class="button is-small is-dark up">⮝</button><button
-                    class="button is-small is-dark left">⮜</button><button
-                    class="button is-small is-dark right">⮞</button><button
-                    class="button is-small is-dark down">⮟</button></div>
+            <div class="dpad">
+                <button class="button is-small is-dark up">⮝</button>
+                <button class="button is-small is-dark left">⮜</button>
+                <button class="button is-small is-dark right">⮞</button>
+                <button class="button is-small is-dark down">⮟</button>
+            </div>
         </div>
         <div id="center-panel__center">
             <div id="start-select" class="block">
-                <div class="tabs is-toggle">
-                    <ul>
-                        <RouterLink v-slot="{ href, navigate, isActive, isExactActive }" to="/device/settings" custom>
-                            <li :href="href" :class="{ 'is-active': isExactActive }">
-                                <a @click="navigate">select</a>
-                            </li>
-                        </RouterLink>
-                        <RouterLink v-slot="{ href, navigate, isActive, isExactActive }" to="/device" custom>
-                            <li :href="href" :class="{ 'is-active': isExactActive }">
-                                <a @click="navigate">start</a>
-                            </li>
-                        </RouterLink>
-                    </ul>
+                <div class="buttons is-centered">
+                    <SettingsLink to="" label="Select" />
+                    <SettingsLink to="settings" label="Start" />
                 </div>
             </div>
 
             <div id="center-panel__screen" class="block">
                 <div class="notification is-light">
-                    <RouterView></RouterView>
+                    <SettingsView />
                 </div>
             </div>
+            <p style="position:absolute">{{ currentView.title }}</p>
         </div>
         <div id="center-panel__right">
             <div class="action-buttons buttons"><button

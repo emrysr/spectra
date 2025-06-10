@@ -2,16 +2,19 @@
     <h1>Modes:</h1>
     <div class="tabs">
         <ul>
-            <RouterLink v-slot="{ href, navigate, isActive, isExactActive }" to="/device/" custom>
+            <li><a>A</a></li>
+            <li><a>B</a></li>
+            <li><a>C</a></li>
+            <!-- <RouterLink v-slot="{ href, navigate, isActive, isExactActive }" to="/device/" custom>
                 <li :href="href" class="is-danger">
-                    <a @click="navigate">&nbsp;A</a>
+                    <a @click="navigate">A</a>
                 </li>
             </RouterLink>
             <RouterLink v-slot="{ href, navigate, isActive, isExactActive }" to="/device/" custom>
                 <li :href="href" class="is-danger">
-                    <a @click="navigate">&nbsp;B</a>
+                    <a @click="navigate">B</a>
                 </li>
-            </RouterLink>
+            </RouterLink> -->
         </ul>
     </div>
 </template>
