@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useSettingsMenuStore } from '@/stores/settings';
+import { useModesMenuStore } from '@/stores/modes';
 import { computed } from 'vue';
 const { to, label: _label } = defineProps<{ to: string, label?: string }>();
-const menu = useSettingsMenuStore();
+const menu = useModesMenuStore();
 const key = String(to).toLowerCase();
 const navigate = () => menu.navigate(to);
 

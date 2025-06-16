@@ -3,24 +3,29 @@ import { storeToRefs } from 'pinia';
 import SettingsLink from './SettingsLink.vue';
 import { useSettingsMenuStore } from '@/stores/settings';
 import SettingsView from './SettingsView.vue';
-const { selected, currentView } = storeToRefs(useSettingsMenuStore());
+const { currentView } = storeToRefs(useSettingsMenuStore());
 </script>
 <template>
 
     <section class="section" id="center-panel">
         <div id="center-panel__left">
             <div class="dpad">
-                <button class="button is-small is-dark up">⮝</button>
-                <button class="button is-small is-dark left">⮜</button>
-                <button class="button is-small is-dark right">⮞</button>
-                <button class="button is-small is-dark down">⮟</button>
+                <button class="button is-dark dpad--up is-raised">⮝</button>
+                <button class="button is-dark dpad--left is-raised">⮜</button>
+                <button class="button is-dark dpad--right is-raised">⮞</button>
+                <button class="button is-dark dpad--down is-raised">⮟</button>
+                <div class="button is-dark is-raised dpad--center" style="pointer-events: none;"></div>
             </div>
         </div>
         <div id="center-panel__center">
             <div id="start-select" class="block">
                 <div class="buttons is-centered">
-                    <SettingsLink to="" label="Select" />
-                    <SettingsLink to="settings" label="Start" />
+                    <SettingsLink to="" label="Select" #="{ navigate, label }">
+                        <a @click="navigate" class="button is-raised">{{ label }}</a>
+                    </SettingsLink>
+                    <SettingsLink to="settings" label="Start" #="{ navigate, label }">
+                        <a @click="navigate" class="button is-raised">{{ label }}</a>
+                    </SettingsLink>
                 </div>
             </div>
 
@@ -29,12 +34,16 @@ const { selected, currentView } = storeToRefs(useSettingsMenuStore());
                     <SettingsView />
                 </div>
             </div>
-            <p style="position:absolute">{{ currentView.title }}</p>
         </div>
         <div id="center-panel__right">
-            <div class="action-buttons buttons"><button
-                    class="button is-rounded is-danger is-circle is-family-mono mt-6">B</button><button
-                    class="button is-rounded is-circle is-danger is-family-mono">A</button></div>
+            <div class="action-buttons buttons">
+                <button class="button is-rounded is-danger is-circle is-family-mono mt-6 is-raised">
+                    B
+                </button>
+                <button class="button is-rounded is-circle is-danger is-family-mono mb-6 is-raised">
+                    A
+                </button>
+            </div>
         </div>
     </section>
 
@@ -65,26 +74,30 @@ const { selected, currentView } = storeToRefs(useSettingsMenuStore());
         display: grid;
         grid-template-areas:
             ". up ."
-            "left . right"
+            "left center right"
             ". down .";
         grid-template-columns: auto auto auto;
         grid-template-rows: auto auto auto;
         gap: 10px;
 
-        .up {
+        .dpad--up {
             grid-area: up;
         }
 
-        .down {
+        .dpad--down {
             grid-area: down;
         }
 
-        .left {
+        .dpad--left {
             grid-area: left;
         }
 
-        .right {
+        .dpad--right {
             grid-area: right;
+        }
+
+        .dpad--center {
+            grid-area: center;
         }
     }
 
@@ -102,7 +115,7 @@ const { selected, currentView } = storeToRefs(useSettingsMenuStore());
         display: flex;
         justify-content: center;
         gap: 1rem;
-        height: 6rem;
+        height: 2rem;
     }
 
     #start {
@@ -124,6 +137,9 @@ const { selected, currentView } = storeToRefs(useSettingsMenuStore());
 
 #center-panel__right {
     grid-area: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     .action-buttons {
         color: var(--text-dark)
