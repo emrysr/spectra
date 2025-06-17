@@ -16,7 +16,4 @@ const { selected } = storeToRefs(useModesMenuStore())
             </li>
         </ul>
     </div>
-    <div class="block">
-        <p>s:{{ selected }}</p>
-    </div>
 </template>
