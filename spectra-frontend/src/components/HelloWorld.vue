@@ -5,9 +5,9 @@ defineProps<{
 </script>
 
 <template>
-  <p class="notification is-warning">
+  <div class="notification is-warning">
     <button class="delete"
       @click="e => (e.target as HTMLButtonElement).closest('.notification')?.classList.add('is-hidden')"></button>
-  <div v-html="message"></div>
-  </p>
+    <div v-html="message"></div>
+  </div>
 </template>

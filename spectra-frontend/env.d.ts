@@ -1,11 +1,11 @@
 /// <reference types="vite/client" />
 import type { Component, ComponentPublicInstance, AsyncComponentLoader } from 'vue';
-interface RouteComponent {
+export interface RouteComponent {
     title: string;
     icon?: string;
     parent?: string;
     component: AsyncComponentLoader;
 }
-interface ComponentMap {
-    [key: string]: RouteComponent;
-}
+export type ComponentMap = { [key: string]: RouteComponent };
+export type StringMap = { [key: string]: string };
+export type FunctionMap = { [key: string]: (...args: any[]) => any };

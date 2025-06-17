@@ -71,6 +71,7 @@ import TheBreadboard from './TheBreadboard.vue';
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    flex-direction: column;
 }
 
 .grid-right-bottom {

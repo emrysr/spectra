@@ -6,7 +6,8 @@ const menu = useModesMenuStore();
 const key = String(to).toLowerCase();
 const navigate = () => menu.navigate(to);
 
-const label = computed(() => _label || menu.getItem(to).title)
+
+const label = computed(() => _label || menu.getItem(to)?.title || '')
 const isActive = computed(() => menu.isActive(to));
 const isExactlyActive = computed(() => menu.isExactlyActive(to));
 </script>
