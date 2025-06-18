@@ -22,7 +22,8 @@ export const createMenuStore = (menuConfig: any, storeId: string) => {
         const currentView = computed(() => menuConfig[selected.value] ?? null)
         const menu = computed(() => Object.keys(menuConfig).map(key => ({
             key,
-            title: menuConfig.title,
+            title: menuConfig[key].title,
+            parent: menuConfig[key].parent,
         })))
         const getItem = (key: string) => menuConfig[key];
         const getParents = (key: string) => {

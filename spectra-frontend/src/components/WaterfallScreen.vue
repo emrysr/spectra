@@ -5,9 +5,13 @@ import MockChart from './MockChart.vue';
 const { selected } = storeToRefs(useModesMenuStore());
 </script>
 <template>
-    <section>
+    <section id="waterfall-screen" class="notification">
         <MockChart></MockChart>
-        <p>s:{{ selected }}</p>
     </section>
-
 </template>
+<style>
+#waterfall-screen {
+    width: 100%;
+    height: 100%;
+}
+</style>

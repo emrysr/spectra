@@ -7,7 +7,7 @@ const { currentView } = storeToRefs(useSettingsMenuStore());
 </script>
 <template>
 
-    <section class="section" id="center-panel">
+    <section class="p-2" id="center-panel">
         <div id="center-panel__left">
             <div class="dpad">
                 <button class="button is-dark dpad--up is-raised">⮝</button>
@@ -30,7 +30,7 @@ const { currentView } = storeToRefs(useSettingsMenuStore());
             </div>
 
             <div id="center-panel__screen" class="block">
-                <div class="notification is-light">
+                <div class="notification is-dark" style="border-radius:4px;">
                     <SettingsView />
                 </div>
             </div>

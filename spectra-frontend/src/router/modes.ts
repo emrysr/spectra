@@ -6,7 +6,7 @@ export const modesMenu = {
         icon: '🅰️',
         component: () => import('../views/settings/DefaultView.vue')
     },
-    'ism': { title: 'Sub Gig', icon: '🔔', parent: 'RF', component: () => import('../views/settings/BlankView.vue') },
+    'ism': { title: 'ISM', icon: '🔔', parent: 'RF', component: () => import('../views/settings/BlankView.vue') },
     'gps': { title: 'GPS', icon: '🌎', parent: 'RF', component: () => import('../views/settings/BlankView.vue') },
     '2.4': { title: '2.4GHz', icon: '🛜', parent: 'RF', component: () => import('../views/settings/BlankView.vue') },
     'vhf': { title: 'VHF', icon: '📻', parent: 'RF', component: () => import('../views/settings/BlankView.vue') },

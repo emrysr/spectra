@@ -37,7 +37,8 @@ import TheBreadboard from './TheBreadboard.vue';
 <style lang="css">
 .the-device {
     display: flex;
-    outline: 8px solid hotpink;
+    outline: 8px solid var(--bulma-danger-on-scheme);
+    border-radius: 1px;
     min-height: 80vh;
     flex-direction: column;
     gap: 1rem;
@@ -81,14 +82,5 @@ import TheBreadboard from './TheBreadboard.vue';
     justify-content: center;
     align-items: center;
     overflow: hidden;
-}
-
-/* Styles for other stacks if needed */
-.middle-stack,
-.inputs-stack,
-.bottom-stack {
-    padding: 1rem;
-    border: 1px solid #ccc;
-    /* For visualization */
 }
 </style>
