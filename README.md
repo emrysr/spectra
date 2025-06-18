@@ -9,4 +9,4 @@ project files
 - services
 - plugins
 
-![Spectra-2025](./images/Spectra-96i.jpg)
+<img src="images/Spectra-96i.jpg" alt="Spectra-2025" style="float: right;max-width: 300px;">
