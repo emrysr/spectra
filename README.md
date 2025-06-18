@@ -9,3 +9,4 @@ project files
 - services
 - plugins
 
+![Spectra-2025](./images/Spectra-96i.jpg)
