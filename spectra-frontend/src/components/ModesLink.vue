@@ -6,14 +6,14 @@ const menu = useModesMenuStore();
 const key = String(to).toLowerCase();
 const navigate = () => menu.navigate(to);
 
-
-const label = computed(() => _label || menu.getItem(to)?.title || '')
+const item = computed(() => menu.getItem(to));
+const label = computed(() => _label || item.value?.short || item.value?.title || key);
 const isActive = computed(() => menu.isActive(to));
 const isExactlyActive = computed(() => menu.isExactlyActive(to));
 </script>
 <template>
     <template v-if="$slots.default">
-        <slot v-bind="{ key, navigate, isActive, isExactlyActive, label }">
+        <slot v-bind="{ key, navigate, isActive, isExactlyActive, label, item }">
             <a @click="navigate">{{ label }}</a>
         </slot>
     </template>

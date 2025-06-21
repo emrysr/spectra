@@ -3,6 +3,8 @@ import { RouterLink, RouterView, useRoute, type RouteRecordNameGeneric } from 'v
 import HelloWorld from './components/HelloWorld.vue'
 import TheDevice from './components/TheDevice.vue';
 import router from './router';
+import { useModesMenuStore } from './stores/modes';
+
 import { ref } from 'vue';
 const message = 'Play Again? - check out <a href="https://github.com/emrysr/spectra">github</a> for progress';
 const collapsed = ref(false);
@@ -11,8 +13,8 @@ const collapsed = ref(false);
 const page_list = ['']
 const pages = router.getRoutes().filter(i => page_list.includes(String(i.name)));
 
-
-
+const menu = useModesMenuStore();
+menu.selected = 'RF';
 </script>
 
 <template>

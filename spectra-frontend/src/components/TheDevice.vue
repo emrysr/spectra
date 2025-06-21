@@ -29,7 +29,19 @@ import TheBreadboard from './TheBreadboard.vue';
             <InputRack />
         </Stack>
         <Stack class="bottom-stack" name="bottom">
-            <TheBreadboard />
+            <div class="columns is-mobile has-background-grey-darker">
+                <div class="column">
+                    <TheBreadboard />
+                </div>
+                <div class="column is-narrow">
+                    <div class="control">
+                        <div class="tags has-addons">
+                            <a class="tag is-link">Spectra</a>
+                            <a class="tag is-black">96l</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </Stack>
     </div>
 </template>
