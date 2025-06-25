@@ -1,14 +1,21 @@
 <script setup lang="ts">
-import { RouterLink, RouterView, useRoute, type RouteRecordNameGeneric } from 'vue-router'
+import { ref, watch } from 'vue';
+import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import TheDevice from './components/TheDevice.vue';
 import router from './router';
 import { useModesMenuStore } from './stores/modes';
-
-import { ref } from 'vue';
+import { useUiStore } from './stores/app';
+import { storeToRefs } from 'pinia';
+const store = useUiStore();
+const { messages, showPages } = storeToRefs(store);
 const message = 'Play Again? - check out <a href="https://github.com/emrysr/spectra">github</a> for progress';
-const collapsed = ref(false);
+const collapsed = ref(showPages.value);
 
+watch(collapsed, () => {
+  console.log('toggle show pages')
+  store.toggleShowPages();
+})
 // const page_list = ['/', 'about']
 const page_list = ['']
 const pages = router.getRoutes().filter(i => page_list.includes(String(i.name)));
@@ -24,9 +31,12 @@ menu.selected = 'RF';
       <button class="button is-small is-ghost" @click="collapsed = true" v-if="!collapsed">x</button>
     </nav>
 
+    <button class="button is-small" @click="store.deleteAllMessages()" v-if="[...messages || []].length > 5">Delete
+      All</button>
+
     <header class="hero is-small">
       <div class="hero-body has-transitions" v-if="pages.length || message">
-        <HelloWorld v-if="message" :message />
+        <HelloWorld v-for="message in messages" :message />
         <nav class="tabs">
           <ul>
             <li v-for="page in pages" :class="{ 'is-active': page.name === router.currentRoute.value.name }">
@@ -61,6 +71,16 @@ menu.selected = 'RF';
 </template>
 
 <style>
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  outline: none;
+}
+
 .has-transitions {
   transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
 }

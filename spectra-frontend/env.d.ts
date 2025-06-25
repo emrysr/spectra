@@ -9,3 +9,9 @@ export interface RouteComponent {
 export type ComponentMap = { [key: string]: RouteComponent };
 export type StringMap = { [key: string]: string };
 export type FunctionMap = { [key: string]: (...args: any[]) => any };
+
+export interface Message {
+    visible: boolean;
+    message: string;
+    className: string;
+}

@@ -21,6 +21,7 @@
     "watch:css": "npm run build-bulma -- --watch"
   },
   "dependencies": {
+    "@vueuse/core": "^13.4.0",
     "bulma": "^1.0.4",
     "pinia": "^3.0.1",
     "vue": "^3.5.13",

@@ -1,4 +1,4 @@
-import { ref, computed, defineAsyncComponent, shallowRef } from 'vue'
+import { computed, defineAsyncComponent, shallowRef } from 'vue'
 import { defineStore } from 'pinia'
 
 export const createMenuStore = (menuConfig: any, storeId: string) => {
@@ -98,7 +98,6 @@ export const createMenuStore = (menuConfig: any, storeId: string) => {
             // Cycle to first if at the end, else go to next
             return topLevelKeys[(currentIndex + 1) % topLevelKeys.length];
         });
-
         return {
             getItem,
             selected,
