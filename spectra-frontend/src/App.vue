@@ -25,7 +25,7 @@ menu.selected = 'RF';
 </script>
 
 <template>
-  <div>
+  <header>
     <nav class="is-pulled-right">
       <button class="button is-small is-ghost" @click="collapsed = false" v-if="collapsed">i</button>
       <button class="button is-small is-ghost" @click="collapsed = true" v-if="!collapsed">x</button>
@@ -34,7 +34,7 @@ menu.selected = 'RF';
     <button class="button is-small" @click="store.deleteAllMessages()" v-if="[...messages || []].length > 5">Delete
       All</button>
 
-    <header class="hero is-small">
+    <div class="hero is-small" v-if="messages?.length">
       <div class="hero-body has-transitions" v-if="pages.length || message">
         <HelloWorld v-for="message in messages" :message />
         <nav class="tabs">
@@ -45,22 +45,20 @@ menu.selected = 'RF';
           </ul>
         </nav>
       </div>
-    </header>
+    </div>
 
     <transition mode="out-in">
       <aside id="pages" class="section" v-if="!collapsed">
         <div class="container">
           <router-view v-slot="{ Component, route }">
             <transition mode="out-in" :name="String(route.meta.transition) || ''">
-              <div>
-                <component :is="Component" />
-              </div>
+              <component :is="Component" />
             </transition>
           </router-view>
         </div>
       </aside>
     </transition>
-  </div>
+  </header>
 
   <main class="section has-transitions" :class="{ 'py-3': collapsed }">
     <div class="container is-max-desktop">
@@ -70,7 +68,22 @@ menu.selected = 'RF';
 
 </template>
 
-<style>
+<style lang="scss">
+@use "bulma/sass/utilities/mixins";
+
+:root {
+  --font-size: clamp(4px, 0.5vmax, 10px);
+  --bulma-body-font-size: var(--font-size);
+  --bulma-size-normal: var(--font-size);
+  --bulma-size-small: var(--font-size);
+}
+
+@include mixins.tablet {
+  :root {
+    --font-size: clamp(10px, 1vmax, 13px);
+  }
+}
+
 button,
 a,
 input,

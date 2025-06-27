@@ -19,15 +19,16 @@ export const createMenuStore = (menuConfig: any, storeId: string) => {
                 console.warn(`[Pinia Store] unknown child: '${to}'.`);
             }
         }
+        // set a route to active
         const selectChildByIndex = (parentKey: string, index: number) => {
-            const childrenKeys = children(parentKey);
+            const children = childrenKeys(parentKey);
             if (childrenKeys.length > index && index >= 0) {
-                selected.value = childrenKeys[index];
+                selected.value = children[index];
             } else {
                 console.warn(`[Pinia Store] No child at index ${index} for parent '${parentKey}'.`);
             }
         }
-        const children = (parentKey: string) => Object.keys(menuConfig).filter(i => menuConfig[i].parent === parentKey)
+        const childrenKeys = (parentKey: string) => Object.keys(menuConfig).filter(i => menuConfig[i].parent === parentKey)
         const currentView = computed(() => menuConfig[selected.value] ?? null)
         const menu = computed(() => Object.keys(menuConfig).map(key => ({
             key,
@@ -105,7 +106,7 @@ export const createMenuStore = (menuConfig: any, storeId: string) => {
             navigate,
             currentView,
             currentComponent,
-            children,
+            childrenKeys,
             selectChildByIndex,
             getParents,
             getTopLevel,

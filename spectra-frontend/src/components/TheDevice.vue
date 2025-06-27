@@ -49,7 +49,6 @@ import TheBreadboard from './TheBreadboard.vue';
 <style lang="css">
 .the-device {
     display: flex;
-    outline: 8px solid var(--bulma-danger-on-scheme);
     border-radius: 1px;
     min-height: 80vh;
     flex-direction: column;
@@ -62,11 +61,12 @@ import TheBreadboard from './TheBreadboard.vue';
     grid-template-areas:
         "left right-top"
         "left right-bottom";
-    grid-template-columns: 50% 1fr;
-    grid-template-rows: 33.33% 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 2fr;
     width: 100%;
     height: 100%;
     gap: 10px;
+    aspect-ratio: 3;
 }
 
 .grid-left {
@@ -83,7 +83,6 @@ import TheBreadboard from './TheBreadboard.vue';
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
     flex-direction: column;
 }
 

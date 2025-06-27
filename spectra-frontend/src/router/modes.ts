@@ -4,6 +4,7 @@ export const modesMenu = {
     'RF': {
         title: 'Wireless',
         icon: '🅰️',
+        short: 'rf',
         component: () => import('../views/settings/DefaultView.vue')
     },
     'ism': { title: 'ISM', icon: '🔔', parent: 'RF', component: () => import('../views/settings/BlankView.vue') },
