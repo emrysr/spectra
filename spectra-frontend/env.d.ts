@@ -11,7 +11,7 @@ export type StringMap = { [key: string]: string };
 export type FunctionMap = { [key: string]: (...args: any[]) => any };
 
 export interface Message {
-    visible: boolean;
+    visible?: boolean;
     message: string;
-    className: string;
+    className?: string;
 }
