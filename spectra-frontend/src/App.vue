@@ -69,8 +69,6 @@ menu.selected = 'RF';
 </template>
 
 <style lang="scss">
-@use "bulma/sass/utilities/mixins";
-
 :root {
   --font-size: clamp(4px, 0.5vmax, 10px);
   --bulma-body-font-size: var(--font-size);

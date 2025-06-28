@@ -1,6 +1,6 @@
 {
   "name": "spectra-frontend",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -17,7 +17,7 @@
     "lint:eslint": "eslint . --fix",
     "lint": "run-s lint:*",
     "format": "prettier --write src/",
-    "build:css": "sass --load-path=node_modules spectra-theme.scss public/css/spectra.css",
+    "build:css": "sass --load-path=node_modules src/assets/scss/spectra-theme.scss public/css/spectra.css",
     "watch:css": "npm run build-bulma -- --watch"
   },
   "dependencies": {

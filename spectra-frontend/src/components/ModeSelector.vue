@@ -2,7 +2,7 @@
 import { storeToRefs } from 'pinia';
 import ModesLink from './ModesLink.vue';
 import { useModesMenuStore } from '@/stores/modes';
-import { computed, nextTick, watch } from 'vue';
+import { computed, watch } from 'vue';
 const store = useModesMenuStore();
 const { nextTopLevel, currentTopLevel, selected } = storeToRefs(store);
 const currentLinkKeys = computed(() => store.childrenKeys(currentTopLevel.value));
@@ -22,6 +22,14 @@ watch(selected, (newValue, oldValue) => {
 const linkColourMap = {
     rf: 'is-danger',
     aux: 'is-danger',
+    cb: 'is-warning',
+    signal: 'is-warning',
+    // meter: 'is-info',
+    // ism: 'is-info',
+    // gps: 'is-success',
+    // ir: 'is-success',
+    // '2.4': 'is-light',
+    // logic: 'is-light',
 } as { [key: string]: string };
 
 const { topLevel } = storeToRefs(store);
@@ -36,6 +44,12 @@ const getLabels = (currentKey = '') => {
     const index = store.childrenKeys(currentTopLevel.value).findIndex(i => i === currentKey);
     return topLevelKeys.value.map(parentKey => getLabel(store.childrenKeys(parentKey)[index]))
 }
+// get link at the same index within each top level menu items based on current item key
+const getLinks = (currentKey = '') => {
+    const index = store.childrenKeys(currentTopLevel.value).findIndex(i => i === currentKey);
+    const keys = topLevelKeys.value.map(parentKey => store.childrenKeys(parentKey)[index]);
+    return keys.map(i => store.getItem(i));
+}
 </script>
 
 <template>
@@ -45,19 +59,21 @@ const getLabels = (currentKey = '') => {
                 <ModesLink :to="nextTopLevel" #="{ navigate, key }">
                     <li :class="[{ 'is-active': currentTopLevel === 'AUX' }, linkColourMap[key]]" :key="key">
                         <a @click="navigate">
-                            <span v-for="label in topLevelKeys">
+                            <span v-for="(label, index) in topLevelKeys"
+                                :class="[`row-${index}`, { 'is-active': label === currentTopLevel }]">
                                 {{ label }}
                             </span>
                         </a>
                     </li>
                 </ModesLink>
-                <ModesLink v-for="linkKey in currentLinkKeys" :to="linkKey" #="{ navigate, isExactlyActive, key, item }"
-                    :key="linkKey">
+                <ModesLink v-for="linkKey in currentLinkKeys" :to="linkKey"
+                    #="{ navigate, isExactlyActive, key, item }">
                     <li :class="[{ 'is-active': isExactlyActive }, linkColourMap[key] || 'is-light']">
                         <a @click="!isExactlyActive ? navigate() : store.navigate(item.parent)"
                             class="is-flex is-flex-direction-column is-justify-content-end">
-                            <span v-for="label in getLabels(linkKey)">
-                                {{ label }}
+                            <span v-for="(link, index) in getLinks(linkKey)"
+                                :class="[`row-${index}`, { 'is-active': link.parent === currentTopLevel }]">
+                                {{ getLabel(link.key) }}
                             </span>
                         </a>
                     </li>
@@ -198,21 +214,43 @@ const getLabels = (currentKey = '') => {
                         &:hover {
                             background: none;
                         }
+
+                        span {
+                            opacity: .5;
+                            @include custom-mixins.transition(opacity, slow, ease-out);
+
+                            &.is-active {
+                                opacity: 1;
+                            }
+                        }
                     }
 
-                    &.is-danger {
+                    $bulma-colors: (
+                        "danger": var(--bulma-danger),
+                        "success": var(--bulma-success),
+                        "dark": var(--bulma-dark),
+                        "light": var(--bulma-light),
+                        "primary": var(--bulma-primary),
+                        "warning": var(--bulma-warning),
+                        "info": var(--bulma-info),
+                        "link": var(--bulma-link),
+                    );
+
+                @each $name, $color in $bulma-colors {
+                    &.is-#{$name} {
                         a {
-                            color: var(--bulma-danger);
+                            color: $color;
                         }
 
                         &::before {
-                            border-top-color: var(--bulma-danger);
-                            background-color: color-mix(in srgb, var(--bulma-danger), black 25%);
+                            border-top-color: $color;
+                            background-color: color-mix(in srgb, $color, black 25%);
                         }
                     }
                 }
             }
         }
     }
+}
 }
 </style>

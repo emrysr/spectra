@@ -1,0 +1,33 @@
+// src/assets/scss/_color-variants.scss
+
+@use "sass:color"; // Needed for color-mix
+
+// Define your color map (these should correspond to Bulma's semantic colors)
+$bulma-semantic-colors: (
+  "danger": var(--bulma-danger),
+  "success": var(--bulma-success),
+  "warning": var(--bulma-warning),
+  "info": var(--bulma-info),
+  // Add other Bulma semantic colors if you need to apply this pattern to them
+  // "primary": var(--bulma-primary),
+  // "link": var(--bulma-link),
+  // "info": var(--bulma-info),
+  // "light": var(--bulma-light),
+  // "dark": var(--bulma-dark),
+);
+
+// This mixin will generate the styles for each color variant
+@mixin generate-color-variant-styles() {
+  @each $name, $color-var in $bulma-semantic-colors {
+    &.is-#{$name} {
+      a {
+        color: $color-var;
+      }
+
+      &::before {
+        border-top-color: $color-var;
+        background-color: color-mix(in srgb, $color-var, black 25%);
+      }
+    }
+  }
+}

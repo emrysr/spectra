@@ -10,7 +10,7 @@ export const createMenuStore = (menuConfig: any, storeId: string) => {
     }
 
     return defineStore(storeId, () => {
-        const selected = shallowRef('');
+        const selected = shallowRef(''); // selected item key
         const navigate = (to: string) => {
             if (menuConfig[to]) {
                 // console.debug(`[Pinia Store] navigating to: '${to}'`)
@@ -101,7 +101,7 @@ export const createMenuStore = (menuConfig: any, storeId: string) => {
         });
         return {
             getItem,
-            selected,
+            selected, // selected item key
             menu,
             navigate,
             currentView,
@@ -113,7 +113,7 @@ export const createMenuStore = (menuConfig: any, storeId: string) => {
             topLevel,
             isActive,
             isExactlyActive,
-            currentTopLevel,
+            currentTopLevel, // key for current top level
             nextTopLevel
         }
     })

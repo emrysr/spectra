@@ -1,0 +1,79 @@
+// src/assets/scss/_custom-mixins.scss
+
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+
+// Define your transition speed variables within a map
+$transition-speeds: (
+  "fast": 0.2s,
+  "slow": 0.5s,
+  "medium": 0.3s,
+  "extra-fast": 0.1s,
+  "extra-slow": 0.8s
+);
+
+// Mixin to apply multiple transitions
+@mixin transition(
+  $properties,
+  $durations,
+  $easings,
+  $delays: ()
+) {
+  $transition-output: ();
+
+  // Ensure all arguments are treated as lists, even if a single value is passed
+  // Use meta.type-of() here
+  @if meta.type-of($properties) != "list" { $properties: ($properties); }
+  @if meta.type-of($durations) != "list" { $durations: ($durations); }
+  @if meta.type-of($easings) != "list" { $easings: ($easings); }
+  @if meta.type-of($delays) != "list" { $delays: ($delays); }
+
+
+  // --- Input Validation ---
+  @if list.length($properties) != list.length($durations) or list.length($properties) != list.length($easings) {
+    @error "Error in custom-transitions mixin: The number of properties, durations, and easings must match.";
+  }
+  @if list.length($delays) > 0 and list.length($properties) != list.length($delays) {
+    @error "Error in custom-transitions mixin: If delays are provided, their count must match the number of properties.";
+  }
+
+  // --- Build the transition string ---
+  @for $i from 1 through list.length($properties) {
+    $prop: list.nth($properties, $i);
+    $raw-duration: list.nth($durations, $i);
+    $easing: list.nth($easings, $i);
+    $delay: if(list.length($delays) >= $i, list.nth($delays, $i), null);
+
+    $resolved-duration: null;
+
+    // Check if the raw-duration is a string key in our $transition-speeds map
+    @if map.has-key($transition-speeds, $raw-duration) {
+      $resolved-duration: map.get($transition-speeds, $raw-duration);
+    } @else {
+      $resolved-duration: $raw-duration;
+    }
+
+    @if not is-length($resolved-duration) {
+      @warn "Warning in custom-transitions mixin: '#{$raw-duration}' resolved to '#{$resolved-duration}', which might not be a valid CSS duration. Make sure it's a time unit (e.g., 0.3s, 200ms) or a valid key in $transition-speeds.";
+    }
+
+    $current-transition-part: ();
+    $current-transition-part: list.append($current-transition-part, $prop);
+    $current-transition-part: list.append($current-transition-part, $resolved-duration);
+    $current-transition-part: list.append($current-transition-part, $easing);
+
+    @if $delay != null {
+      $current-transition-part: list.append($current-transition-part, $delay);
+    }
+
+    $transition-output: list.append($transition-output, $current-transition-part, comma);
+  }
+
+  transition: $transition-output;
+}
+
+// The 'no-tap-highlight' mixin used in spectra-theme.scss
+@mixin no-tap-highlight() {
+  -webkit-tap-highlight-color: transparent;
+}

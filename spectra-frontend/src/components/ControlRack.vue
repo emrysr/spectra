@@ -52,8 +52,6 @@ const { currentView } = storeToRefs(useSettingsMenuStore());
 </template>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
-
 #center-panel {
     display: grid;
     grid-template-areas: "left center right";

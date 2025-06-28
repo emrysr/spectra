@@ -14,10 +14,14 @@ const isExactlyActive = computed(() => menu.isExactlyActive(to));
 <template>
     <template v-if="$slots.default">
         <slot v-bind="{ key, navigate, isActive, isExactlyActive, label, item }">
-            <a @click="navigate">{{ label }}</a>
+            <a @click="navigate">
+                {{ label }}
+            </a>
         </slot>
     </template>
     <template v-else>
-        <button class="button" @click="navigate" :class="{ 'is-active': isActive }">{{ label }}</button>
+        <button class="button" @click="navigate" type="button" :class="{ 'is-active': isActive }">
+            {{ label }}
+        </button>
     </template>
 </template>

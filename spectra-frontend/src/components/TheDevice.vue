@@ -1,47 +1,23 @@
 <script setup lang="ts">
 import Stack from './Stack.vue';
-import WaterfallScreen from './WaterfallScreen.vue';
-import ModeSelector from './ModeSelector.vue';
-import MessagesScreen from './MessagesScreen.vue';
-import TheControls from './TheControls.vue';
+import ControlRack from './ControlRack.vue';
 import InputRack from './InputRack.vue';
-import TheBreadboard from './TheBreadboard.vue';
+import TopRack from './TopRack.vue';
+import BottomRack from './BottomRack.vue';
 </script>
 <template>
     <div class="the-device">
         <Stack class="top-stack" name="top">
-            <div class="grid-container">
-                <div class="grid-left">
-                    <WaterfallScreen />
-                </div>
-                <div class="grid-right-top">
-                    <ModeSelector />
-                </div>
-                <div class="grid-right-bottom">
-                    <MessagesScreen />
-                </div>
-            </div>
+            <TopRack />
         </Stack>
         <Stack class="middle-stack" name="middle">
-            <TheControls />
+            <ControlRack />
         </Stack>
         <Stack class="inputs-stack" name="inputs">
             <InputRack />
         </Stack>
         <Stack class="bottom-stack" name="bottom">
-            <div class="columns is-mobile has-background-grey-darker">
-                <div class="column">
-                    <TheBreadboard />
-                </div>
-                <div class="column is-narrow">
-                    <div class="control">
-                        <div class="tags has-addons">
-                            <a class="tag is-link">Spectra</a>
-                            <a class="tag is-black">96l</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <BottomRack />
         </Stack>
     </div>
 </template>
@@ -55,8 +31,7 @@ import TheBreadboard from './TheBreadboard.vue';
     gap: 1rem;
 }
 
-
-.grid-container {
+.top-stack__grid {
     display: grid;
     grid-template-areas:
         "left right-top"
@@ -67,31 +42,31 @@ import TheBreadboard from './TheBreadboard.vue';
     height: 100%;
     gap: 10px;
     aspect-ratio: 3;
-}
 
-.grid-left {
-    grid-area: left;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
+    .grid-left {
+        grid-area: left;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
 
-.grid-right-top {
-    grid-area: right-top;
-    /* For visualization */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
+    .grid-right-top {
+        grid-area: right-top;
+        /* For visualization */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
 
-.grid-right-bottom {
-    grid-area: right-bottom;
-    /* For visualization */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    .grid-right-bottom {
+        grid-area: right-bottom;
+        /* For visualization */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
 }
 </style>

@@ -17,4 +17,20 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+          @use "bulma/sass/utilities/initial-variables";
+          @use "bulma/sass/utilities/functions";
+          @use "bulma/sass/utilities/mixins" as mixins;
+
+          @use "@/assets/scss/_custom-mixins.scss" as custom-mixins;
+          @use "@/assets/scss/_color-variants.scss" as color-variants;
+
+          @use "@/assets/scss/_variables.scss" as *;
+        `
+      }
+    }
+  }
 })
