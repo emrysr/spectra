@@ -1,0 +1,31 @@
+{
+    "name": "Spectra Dev (WSL2)",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "forwardPorts": [
+        5173,
+        3000
+    ],
+    "portsAttributes": {
+        "5173": {
+            "label": "Vite Dev Server",
+            "onAutoForward": "notify"
+        }
+    },
+    // Automatically installs dependencies for the frontend on startup
+    "postCreateCommand": "cd spectra-frontend && npm install",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vue.volar",
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode",
+                "vercel.vercel",
+                "statelyai.stately-vscode" // Added for your XState work
+            ]
+        }
+    },
+    // Ensures the container runs as the 'node' user to avoid WSL permission issues
+    "remoteUser": "node"
+}
