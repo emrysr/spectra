@@ -13,8 +13,8 @@
             "onAutoForward": "notify"
         }
     },
-    // Automatically installs dependencies for the frontend on startup
-    "postCreateCommand": "cd spectra-frontend && npm install",
+    // Automatically installs dependencies for the frontend on startup and builds the production bundle
+    "postCreateCommand": "cd spectra-frontend && npm install && npm run build",
     "customizations": {
         "vscode": {
             "extensions": [

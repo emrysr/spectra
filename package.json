@@ -1,0 +1,7 @@
+{
+    "name": "spectra",
+    "private": true,
+    "scripts": {
+        "build:frontend": "cd spectra-frontend && npm run build"
+    }
+}
